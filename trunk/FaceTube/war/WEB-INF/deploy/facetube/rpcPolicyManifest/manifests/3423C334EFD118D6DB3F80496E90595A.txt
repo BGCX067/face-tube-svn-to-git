@@ -1,0 +1,2 @@
+serviceClass: com.dnb.webmash.facetube.client.requests.FaceTubeService
+path: B87A8CDEAB8549658BAC4BD2EC9B93E3.gwt.rpc

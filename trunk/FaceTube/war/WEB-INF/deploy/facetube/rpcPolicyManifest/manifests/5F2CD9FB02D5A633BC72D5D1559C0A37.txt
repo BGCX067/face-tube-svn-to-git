@@ -1,0 +1,2 @@
+serviceClass: com.dnb.webmash.facetube.client.LoginService
+path: A867ECE733EB6DE99F42A3397E02C72C.gwt.rpc

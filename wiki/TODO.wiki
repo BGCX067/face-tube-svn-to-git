@@ -1,0 +1,57 @@
+ABOUT: A YouTube + Facebook Like mashup using restfb and gwt-youtube-api
+
+Step1: Authenticate with Facebook.. WRITE THIS NEW [TEST] (needs URLS?)
+	* TODO Figure out how to manage accessToken, sessions and cookies http://www.apl.jhu.edu/~hall/java/Servlet-Tutorial/Servlet-Tutorial-Session-Tracking.html
+	* TODO FIGURE OUT USERSERVICE (APPENGINE STYLES) NEED .ISLOGGEDIN
+	|_> Use session management from javax.servlet to also manage userservice?
+Step2: Use RestFB to make Facebook Graph API Queries to get ALL FACEBOOK DATA (Friends list, media lists) [TEST]
+	* try using restFB types to store and pass to client... if not working create custom
+Step3: Create UI for these features ^
+	* USE http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/user/cellview/client/CellBrowser.html
+	* and CellList
+
+TODO: MAKE WELCOME TO FACETUBE VIDEO ON YOUTUBE
+
+FContentProvider : Logs in to FB, Displays a tile horizontal list of the user's pic followed by all the friends, allows one tile to be selected at a time.
+					Has a dropdown to select which list to pick from (media/tv/movies/books)
+MediaLibraryManager : Displays a tile horizontal list of pics from the selected FBUser's media/tv/movies/books
+StoresManager: Displays a tile horizontal list of pics from a multi-store search run on the selected media item.
+
+Step4: Create the player
+
+TubePlayer : Implements Youtube API to allow user to search youtube videos/playlists for the selected media item.
+	Has player controls
+	Has youtube login
+	Can create playlists (to store the remaining videos or all the videos watched so far)
+	etc... (extra features post release)
+	
+
+FILES IN CONTENTION: LoginService.java LoginServiceAsync.java LoginServiceImpl.java Session.java
+DECISION: Use gdata and youtube apis directly or rely on gwt-youtube-api???	
+*******************************************************************************************************
+Services Request Flows
+* Use a 30 sec Timer on all Server-side requests and 10 min on tasks... (write helper method?) see http://code.google.com/webtoolkit/doc/latest/DevGuideCodingBasicsDelayed.html
+
+Client-side only:
+setCookie\ Use com.google.gwt.user.client.Cookies
+getCookie/
+
+Server-side:
+Direct Requests:
+getRandomMediaItem(String accessToken, String userID, MediaType type) //ONLY WAY TO GET A MEDIAITEM DIRECTLY FROM SERVER... INCASE LAZY REQS ALL FAIL
+Login //to facebook
+
+Lazy Requests:
+getFBUserNFriends(String accessToken
+getMediaPages(String accessToken, String userID, MediaType type)
+getStoreFront(Page media)
+
+Helpers: (direct)
+StartSession(Data, cache/jdo)
+UpdateSession(Data, cache/jdo)
+
+******************
+
+TODO FIX: FCONTENTPROVIDER AND MEDIALIBRARY LISTS / EVENT HANDLERS
+FULLY IMPLEMENT SHARED TYPES USER AND PAGE (using restfb json conversions?)
+TEST ONLINE AND POLISH UI!!!
